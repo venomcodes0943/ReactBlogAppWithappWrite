@@ -4,7 +4,7 @@ const SignUp = () => {
   return (
     <div className="h-screen flex justify-center items-center w-screen px-4">
       <div className="absolute top-4 right-0 md:right-4">
-        <ThemeController width={"20px"} height={"20px"} />
+        <ThemeController size={"6"} />
       </div>
       <div className="max-w-md shadow-md px-2 md:px-4 py-4 md:py-6 border border-slate-400 rounded-md">
         <div className="text-center">

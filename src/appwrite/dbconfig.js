@@ -86,16 +86,29 @@ export class Service {
     }
   }
 
-  async uploadFile() {
+  async uploadFile(file) {
     try {
       return await this.bucket.createFile(
         config.appwriteBucketId,
         ID.unique(),
-        document.getElementById("uploader").files[0]
+        file
       );
     } catch (error) {
       throw new Error("Error While  Uploading File", error);
     }
+  }
+
+  async deleteFile(fileId) {
+    try {
+      await this.bucket.deleteFile(config.appwriteBucketId, fileId);
+      return true;
+    } catch (error) {
+      throw new Error("Error While  Uploading File", error);
+    }
+  }
+
+  getFilePreview(fileId) {
+    return this.bucket.getFilePreview(config.appwriteBucketId, fileId);
   }
 }
 
