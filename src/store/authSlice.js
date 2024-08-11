@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   status: false,
@@ -13,9 +13,13 @@ const authSlice = createSlice({
       state.status = true;
       state.userData = action.payload;
     },
+
+    logout: (state) => {
+      (state.status = false), (state.userData = null);
+    },
   },
 });
 
-export const { loginUser } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 
 export default authSlice.reducer;

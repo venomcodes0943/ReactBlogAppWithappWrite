@@ -1,10 +1,25 @@
-import SignUp from "./components/SignUp";
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Loader from "./components/Loader";
+import { useDispatch } from "react-redux";
+import authService from "./appwrite/auth";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+  const disPatch = useDispatch();
+  
+  useEffect(() => {
+    authService
+      .getCurrectUser()
+      .then((userData) => {})
+      .finally();
+  }, []);
+
   return (
-    <div className="">
-      <SignUp />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+    </Routes>
   );
 };
 
