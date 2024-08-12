@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Loader from "./components/Loader";
 import { useDispatch } from "react-redux";
@@ -11,14 +10,17 @@ const App = () => {
   const disPatch = useDispatch();
 
   useEffect(() => {
-    authService
-      .getCurrectUser()
+    const currentUser = authService.getCurrectUser();
+    currentUser
       .then((userData) => {
         if (userData) {
           disPatch(login({ userData }));
         } else {
           disPatch(logout());
         }
+      })
+      .catch((error) => {
+        console.log(error);
       })
       .finally(() => {
         setLoading(false);
